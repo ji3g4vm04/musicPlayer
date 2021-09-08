@@ -2,7 +2,7 @@
 const playBtn = document.querySelector('.play');
 const pauseBtn = document.querySelector('.pause');
 let audioPlayer = document.createElement('audio');
-const cover = document.querySelector('.cover');// 封面
+const cover = document.querySelector('.musicCover .container');// 封面
 const title = document.querySelector('.title');// 標題
 const content = document.querySelector('.content');// 內文
 const playSchedule = document.querySelector('.playSchedule');
@@ -29,8 +29,8 @@ let musicNow = function(){
 }
 let timing = function () {
   const date = new Date();
-  const min = date.getMinutes();
-  const sec = date.getSeconds();
+  const min = date.getHours();
+  const sec = date.getMinutes();
   return `${min}:${sec}`;
 }
 
@@ -39,9 +39,7 @@ function setMusic(i) { //設置當前音樂
   setTimeout(() => {
     playDuration.textContent = musicDuration();
   },50)
-  cover.style = `background : url("${musicList[i].cover} no-repeat;
-  background-size : cover;
-  background-position: center;`;
+  cover.innerHTML = `<img src="styles/images/${musicList[i].cover}" alt="" srcset="">`
   title.textContent = musicList[i].musicName;
   content.textContent = musicList[i].musicContent;
   audioPlayer.volume = 0.2;

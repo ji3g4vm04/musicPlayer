@@ -47,9 +47,8 @@ body{
   align-items: center;
   text-align: center;
 }
-.musicCover{
-  margin-bottom: 45px;
   .container{
+    margin-bottom: 45px;
       box-shadow: 8px 8px 16px rgba(255, 255, 255, 0.25),
         8px 8px 16px rgba(97, 97, 97, 0.25);;
       width: 156px;
@@ -60,13 +59,12 @@ body{
       padding: 0 17px;
       display: flex;
       align-items: center;
-      .cover{
-          width: 123px;
-          height: 123px;
-          border-radius: 30px;
+      img{
+        width: 123px;
+        height: 123px;
+        border-radius: 20px;
       }
   }
-}
 .musicTitle{
   margin-bottom: 70px;
   .title{
