@@ -47,24 +47,26 @@ body{
   align-items: center;
   text-align: center;
 }
+.musicCover{
+  margin-bottom: 45px;
   .container{
-    margin-bottom: 45px;
-      box-shadow: 8px 8px 16px rgba(255, 255, 255, 0.25),
-        8px 8px 16px rgba(97, 97, 97, 0.25);;
-      width: 156px;
-      height: 156px;
+    box-shadow: 8px 8px 16px rgba(255, 255, 255, 0.25),
+      8px 8px 16px rgba(97, 97, 97, 0.25);;
+    width: 156px;
+    height: 156px;
+    border-radius: 20px;
+    background: #E1E1E1;
+    margin: 0 auto;
+    padding: 0 17px;
+    display: flex;
+    align-items: center;
+    img{
+      width: 123px;
+      height: 123px;
       border-radius: 20px;
-      background: #E1E1E1;
-      margin: 0 auto;
-      padding: 0 17px;
-      display: flex;
-      align-items: center;
-      img{
-        width: 123px;
-        height: 123px;
-        border-radius: 20px;
-      }
+    }
   }
+}
 .musicTitle{
   margin-bottom: 70px;
   .title{
