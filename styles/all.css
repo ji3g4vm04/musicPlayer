@@ -1,0 +1,197 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@font-face {
+  font-family: Roboto-Black;
+  src: url(fonts/Roboto-Black.ttf);
+}
+* {
+  box-sizing: border-box;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+body {
+  background: #E5E5E5;
+  position: relative;
+}
+
+.musicContainer {
+  position: absolute;
+  width: 375px;
+  height: 667px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #DDDDDD;
+  box-shadow: 8px 8px 16px rgba(201, 201, 201, 0.25), 8px 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.state {
+  display: flex;
+  justify-content: space-between;
+  background: black;
+  align-items: center;
+  padding: 6px 5px;
+  height: 24px;
+}
+.state * {
+  color: white;
+}
+.state .time {
+  font-size: 9px;
+  font-family: "Roboto-Black";
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.musicBody {
+  margin-top: 77px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.musicCover {
+  margin-bottom: 45px;
+}
+.musicCover .container {
+  box-shadow: 8px 8px 16px rgba(255, 255, 255, 0.25), 8px 8px 16px rgba(97, 97, 97, 0.25);
+  width: 156px;
+  height: 156px;
+  border-radius: 20px;
+  background: #E1E1E1;
+  margin: 0 auto;
+  padding: 0 17px;
+  display: flex;
+  align-items: center;
+}
+.musicCover .container .cover {
+  width: 123px;
+  height: 123px;
+  border-radius: 30px;
+}
+
+.musicTitle {
+  margin-bottom: 70px;
+}
+.musicTitle .title {
+  font-family: "Roboto-Black";
+  font-size: 24px;
+  line-height: 28px;
+  margin-bottom: 10px;
+}
+.musicTitle .content {
+  font-family: "Roboto-Black";
+  font-size: 10px;
+  line-height: 11px;
+  color: #404040;
+}
+
+.playBar {
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 75px;
+  width: 188px;
+  height: 7px;
+  background: #bbbbbb;
+}
+.playBar .playSchedule {
+  transition: right 0.2s;
+  z-index: 10;
+  position: absolute;
+  background: black;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 100%;
+}
+.playBar .playTimeNow, .playBar .playDuration {
+  position: absolute;
+  font-family: "Roboto-Black";
+  font-size: 14px;
+  line-height: 16px;
+  transform: translateY(-100%);
+}
+.playBar .playTimeNow {
+  left: 0;
+}
+.playBar .playDuration {
+  right: 0;
+}
+
+.functionBtns {
+  display: flex;
+  align-items: center;
+}
+.functionBtns button {
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  background: #E1E1E1;
+  box-shadow: 8px 8px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(101, 101, 101, 0.25);
+}
+.functionBtns button:active {
+  box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.25), inset 2px 2px 8px rgba(105, 105, 105, 0.25);
+}
+.functionBtns .play, .functionBtns .pause {
+  font-size: 24px;
+  margin: 0 24px 0 27px;
+}
+.functionBtns .none {
+  display: none;
+}
+.functionBtns .next, .functionBtns .last {
+  font-size: 14px;
+}/*# sourceMappingURL=all.css.map */

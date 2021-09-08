@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicPlay</title>
+    <link rel="stylesheet" href="styles/all.css"><link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+    rel="stylesheet">
+</head>
+<body>
+  <div>
+    <div class="musicContainer">
+      <div class="state">
+        <h2 class="time">
+          11:37
+        </h2>
+        <div class="battery material-icons">
+            battery_full
+        </div>
+      </div>
+      <div class="musicBody">
+        <div class="musicCover">
+          <div class="container">
+            <div class="cover"></div>
+          </div>
+        </div>
+        <div class="musicTitle">
+          <h2 class="title">
+            somethinig
+          </h2>
+          <p class="content">
+            shomething...
+          </p>
+        </div>
+        <div class="playBar">
+          <div class="playTimeNow">00:00</div>
+          <div class="playDuration">00:00</div>
+          <div class="playSchedule"></div>
+        </div>
+        <div class="functionBtns">
+          <button class="last material-icons">
+            skip_previous
+          </button>
+          <button class="play material-icons">
+            play_arrow
+          </button>
+          <button class="pause none material-icons">
+            pause
+          </button>
+          <button class="next material-icons">
+            skip_next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="musicJson.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

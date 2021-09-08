@@ -1,0 +1,10 @@
+@font-face {
+    font-family: Roboto-Black;
+    src: url(fonts/Roboto-Black.ttf);
+}
+
+@mixin Roboto-Black($fs,$lh) {
+    font-family: "Roboto-Black";
+    font-size: $fs;
+    line-height: $lh;
+}
