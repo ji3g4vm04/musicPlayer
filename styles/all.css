@@ -176,6 +176,7 @@ body {
   align-items: center;
 }
 .functionBtns button {
+  text-align: center;
   border-radius: 50%;
   width: 42px;
   height: 42px;
