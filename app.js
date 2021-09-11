@@ -17,16 +17,15 @@ let playOff = true;
 
 /* functions */
 /** 現在時間設置 */
-function dateNow(){
-  const date = new Date();
+function dateNow(date){
   const min = date.getHours();
   const sec = date.getMinutes();
-  return `${min}:${sec}`;
+  return `${min >= 10 ?min:'0'+min}:${sec >= 10 ?sec:'0'+sec}`;
 }
 function setTimeNow(){
-  dateNow();
   setInterval(() => {
-    timeNow.textContent = dateNow();
+    const date = new Date();
+    timeNow.textContent = dateNow(date);
   },1000);
 }
 /** set play music now */
