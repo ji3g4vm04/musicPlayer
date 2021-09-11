@@ -1,115 +1,113 @@
-//doms
+/*dom*/ 
+const timeNow = document.querySelector('.time');
+const audio = document.createElement('audio');
+const musicTitle = document.querySelector('.musicTitle');
+const musicImg = document.getElementById('musicImg');
+const playDuration = document.querySelector('.playDuration');
+const playSchedule = document.querySelector('.playTimeNow');
+const percentSchedule = document.querySelector('.playSchedule');
 const playBtn = document.querySelector('.play');
 const pauseBtn = document.querySelector('.pause');
-let audioPlayer = document.createElement('audio');
-const cover = document.querySelector('.musicCover .container');// 封面
-const title = document.querySelector('.title');// 標題
-const content = document.querySelector('.content');// 內文
-const playSchedule = document.querySelector('.playSchedule');
-const lastBtn = document.querySelector('.last')
+const lastBtn = document.querySelector('.last');
 const nextBtn = document.querySelector('.next');
-const playTimeNow = document.querySelector('.playTimeNow');
-const playDuration = document.querySelector('.playDuration');
 const playBar = document.querySelector('.playBar');
-const nowTime = document.querySelector('.time');
-//宣告變數
-let listNow = 0;
-let switchBtn = true;
-let cutMoveBol = false ;
-let musicDuration =function(){
-  const min = Math.floor(audioPlayer.duration / 60);
-  const sec = (audioPlayer.duration % 60).toFixed(0);
-  return `${min < 10 ?  '0' + min.toString() :min.toString()}:${sec < 10 ? '0' + sec :sec}`
-}
-let musicNow = function(){
-  const now = (audioPlayer.currentTime).toFixed(0);
-  const min = Math.floor(now / 60);
-  const sec = Math.floor(now % 60);
-  return `${min < 10 ?  '0' + min.toString() :min.toString()}:${sec < 10 ? '0' + sec :sec}`
-}
-let timing = function () {
+/* 變數 */
+let musicIndex = 0;
+let playOff = true;
+
+/* functions */
+/** 現在時間設置 */
+function dateNow(){
   const date = new Date();
   const min = date.getHours();
   const sec = date.getMinutes();
   return `${min}:${sec}`;
 }
-
-function setMusic(i) { //設置當前音樂
-  audioPlayer.src =musicList[i].musicAddress;
-  setTimeout(() => {
-    playDuration.textContent = musicDuration();
-  },50)
-  cover.innerHTML = `<img src="styles/images/${musicList[i].cover}" alt="" srcset="">`
-  title.textContent = musicList[i].musicName;
-  content.textContent = musicList[i].musicContent;
-  audioPlayer.volume = 0.2;
-  switchBtn = false;
-  playBtnSwitch();
+function setTimeNow(){
+  dateNow();
+  setInterval(() => {
+    timeNow.textContent = dateNow();
+  },1000);
 }
-function last() {// 上一首
-  if(listNow === 0) {
-    listNow = musicList.length - 1;
+/** set play music now */
+function musicIndexAdd(){
+  if(musicIndex === musicList.length-1){
+    musicIndex = 0;
   }else{
-    listNow-- ;
+    musicIndex++;
   }
-  setMusic(listNow);
+  playOff = true;
+  setMusic()
+  btnMode()
 }
-function next() { // 下一首
-  if(musicList.length-1 === listNow){
-    listNow = 0;
+function musicIndexDecrease(){
+  if(musicIndex === 0){
+    musicIndex = musicList.length-1;
   }else{
-    listNow++;
+    musicIndex--;
   }
-  setMusic(listNow);
+  playOff = true;
+  setMusic()
+  btnMode()
 }
-function musicPlay(){// 播放當前音樂
-    audioPlayer.play();
-    playBtnSwitch();
-    switchBtn = true;
-    playBtnSwitch(switchBtn);
+/** audio duration change */
+function durationChange() {
+  const min = Math.floor(audio.duration / 60);
+  const sec = (audio.duration % 60).toFixed();
+  playDuration.textContent = `${min}:${sec}`;
 }
-function runningSchedule() {//進度條進度
-  const now = ((audioPlayer.currentTime).toFixed(0)) / audioPlayer.duration;
-  const percent = 100-(now.toFixed(2)*100).toFixed(0);
-  playSchedule.style.right = `${percent}%`
-  if(!percent){
-    switchBtn = false;
-    playBtnSwitch();
-  }
+/** schedule change */
+function schedule(time) {
+  const min = Math.floor(time / 60);
+  const sec = (time % 60).toFixed();
+  return `${min >= 10?min:'0'+min}:${sec >= 10? sec:'0'+sec}`
 }
-function playBtnSwitch() {//轉換播放/暫停
-  if(switchBtn){
+/** percent change */
+function percentChange(currentTime,duration){
+  const percent = ((currentTime / duration)*100).toFixed(0);
+  return 100-percent;
+}
+function setMusic(){
+  audio.src = musicList[musicIndex].musicAddress;
+  musicTitle.children[0].textContent = musicList[musicIndex].musicName;
+  musicTitle.children[1].textContent = musicList[musicIndex].musicContent;
+  musicImg.src = `styles/images/${musicList[musicIndex].cover}`;
+  setTimeout(durationChange,100);
+}
+function btnMode(){
+  if(playOff){
+    playBtn.classList.remove('none');
+    pauseBtn.classList.add('none');
+  }else{
     playBtn.classList.add('none');
     pauseBtn.classList.remove('none');
-  }else{
-    playBtn.classList.remove('none');
-    pauseBtn.classList.add('none');
   }
 }
-function musicPause() {// pause
-    playBtn.classList.remove('none');
-    pauseBtn.classList.add('none');
-    audioPlayer.pause();
+function playAudio() {
+  audio.play();
+  playOff =false;
+  btnMode()
 }
-function cutMusic(e){//切換時間
-  e.stopPropagation();
-  const targetSchedule = (e.offsetX / playBar.clientWidth);
-  const time = Math.floor(targetSchedule * audioPlayer.duration);
-  const percent = Math.floor(targetSchedule * 100);
-  audioPlayer.currentTime = time ;
+function pauseAudio() {
+  audio.pause();
+  playOff = true;
+  btnMode()
 }
-audioPlayer.addEventListener('timeupdate',() => {
-  runningSchedule();
-  playTimeNow.textContent = musicNow();
+
+function clickSchedule(e){
+  const percent = (e.offsetX / playBar.offsetWidth);
+  audio.currentTime = audio.duration * percent;
+}
+
+audio.addEventListener('timeupdate',() => {
+  const { currentTime,duration } = audio;
+  playSchedule.textContent = schedule(currentTime);
+  percentSchedule.style = `right:${percentChange(currentTime,duration)}%`;
 })
-
-setInterval(() => {//左上角時間
-  nowTime.textContent = timing();
-}, 1000);
-
-playBtn.addEventListener('click',musicPlay);
-pauseBtn.addEventListener('click',musicPause);
-nextBtn.addEventListener('click',next);
-lastBtn.addEventListener('click',last);
-playBar.addEventListener('click',cutMusic);
-setMusic(0);
+playBtn.addEventListener('click',playAudio);
+pauseBtn.addEventListener('click',pauseAudio);
+nextBtn.addEventListener('click',musicIndexAdd);
+lastBtn.addEventListener('click',musicIndexDecrease);
+playBar.addEventListener('click',clickSchedule);
+setTimeNow();
+setMusic();
